@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "97650975609",
+    "project_id": "fir-flutterlearning-4e2b9",
+    "storage_bucket": "fir-flutterlearning-4e2b9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:97650975609:android:e2739e68c6b4ff5ef585a8",
+        "android_client_info": {
+          "package_name": "com.appmaking.firebaselearning"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "97650975609-atil01t1h400tmcb6bj0a04pmhijtqv6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD08NeEW6d0gheI5u80Qj-1LX5lCLGzHUc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "97650975609-atil01t1h400tmcb6bj0a04pmhijtqv6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "97650975609-cdbbs953mo08d977vbrqe8k3he8o9p2s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.appmaking.firebaselearning"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
