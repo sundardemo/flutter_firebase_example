@@ -4,12 +4,13 @@ import 'package:flutter/material.dart';
 
 class AuthService {
   FirebaseAuth _auth = FirebaseAuth.instance;
-  void login(email, password) async {
+  void login(context, email, password) async {
     try {
       var res = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       if (res.user!.uid != null) {
         print(res.user!.uid);
+        Navigator.pushNamed(context, '/home');
         if (res.user!.emailVerified) {
           print("Verified User");
         }
@@ -40,5 +41,10 @@ class AuthService {
     } catch (e) {
       print(e);
     }
+  }
+
+  void logout(context) async {
+    await _auth.signOut();
+    Navigator.pushReplacementNamed(context, '/login');
   }
 }

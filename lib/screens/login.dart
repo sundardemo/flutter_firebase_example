@@ -29,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         ElevatedButton(
           onPressed: () {
-            AuthService().login(_emailCtrl.text, _passwordCtrl.text);
+            AuthService().login(context, _emailCtrl.text, _passwordCtrl.text);
           },
           child: Text("Login"),
         ),

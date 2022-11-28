@@ -1,6 +1,7 @@
 import 'package:firebaselearning/screens/home.dart';
 import 'package:firebaselearning/screens/login.dart';
 import 'package:firebaselearning/screens/manage-task.dart';
+import 'package:firebaselearning/screens/profile.dart';
 import 'package:firebaselearning/screens/register.dart';
 import 'package:firebaselearning/screens/reset_password.dart';
 import 'package:flutter/material.dart';
@@ -27,9 +28,10 @@ class MyApp extends StatelessWidget {
         '/login': (context) => LoginScreen(),
         '/register': (context) => RegisterScreen(),
         '/reset-password': (context) => ResetPasswordScreen(),
-        '/manage-task': (context) => ManageTask()
+        '/manage-task': (context) => ManageTask(),
+        '/manage-profile': (context) => ProfileScreen()
       },
-      home: LoginScreen(),
+      home: HomeScreen(),
     );
   }
 }
