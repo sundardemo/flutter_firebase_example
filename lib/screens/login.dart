@@ -44,6 +44,21 @@ class _LoginScreenState extends State<LoginScreen> {
             Navigator.pushNamed(context, '/register');
           },
           child: Text("Register"),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        TextButton(
+          onPressed: () {
+            AuthService().loginWithGoogle();
+          },
+          child: Text("Login with Google"),
+        ),
+        TextButton(
+          onPressed: () {
+            AuthService().loginWithFacebook();
+          },
+          child: Text("Login with Facebook"),
         )
       ]),
     );

@@ -19,6 +19,11 @@ class _ManageTaskState extends State<ManageTask> {
     return Scaffold(
       appBar: AppBar(title: Text("Manage Task")),
       body: Column(children: [
+        IconButton(
+            onPressed: () {
+              TaskService().uploadToFirebaseStorage();
+            },
+            icon: Icon(Icons.upload)),
         TextField(
           controller: _titleCtrl,
         ),

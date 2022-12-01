@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:image_picker/image_picker.dart';
 
 class TaskService {
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -47,5 +49,26 @@ class TaskService {
 
   void deleteTask(id) {
     _firestore.collection("tasks").doc(id).delete();
+  }
+
+  Future<XFile?> pickImage() async {
+    var file = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (file != null) {
+      return file;
+    } else {
+      return null;
+    }
+  }
+
+  void uploadToFirebaseStorage() async {
+    var file = await pickImage();
+    var data = await file!.readAsBytes();
+    print(file.path);
+    var fileRef = await FirebaseStorage.instance
+        .ref("tasks")
+        .child("taskxx_${file.name}")
+        .putData(data, SettableMetadata(contentType: 'image/jpeg'));
+    var url = await fileRef.ref.getDownloadURL();
+    print(url);
   }
 }

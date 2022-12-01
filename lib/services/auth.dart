@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebaselearning/services/user.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 class AuthService {
   FirebaseAuth _auth = FirebaseAuth.instance;
@@ -32,6 +34,25 @@ class AuthService {
       }
     } catch (e) {
       print(e);
+    }
+  }
+
+  void loginWithGoogle() async {
+    GoogleSignIn _googleSignIn = GoogleSignIn(scopes: []);
+    var user = await _googleSignIn.signIn();
+    if (user != null) {
+      print(user.displayName);
+      print(user.email);
+      print(user.photoUrl);
+    }
+  }
+
+  void loginWithFacebook() async {
+    var loginData = await FacebookAuth.instance.login();
+    if (loginData != null) {
+      print(loginData.accessToken);
+      var userData = await FacebookAuth.instance.getUserData();
+      print(userData.toString());
     }
   }
 
