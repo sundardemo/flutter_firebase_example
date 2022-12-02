@@ -6,6 +6,8 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 class AuthService {
   FirebaseAuth _auth = FirebaseAuth.instance;
+  GoogleSignIn _googleSignIn = GoogleSignIn(scopes: []);
+
   void login(context, email, password) async {
     try {
       var res = await _auth.signInWithEmailAndPassword(
@@ -56,6 +58,46 @@ class AuthService {
     }
   }
 
+  void loginWithGoogleAndFirebase() async {
+    GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
+    GoogleSignInAuthentication googleSignInAuthentication =
+        await googleSignInAccount!.authentication;
+
+    AuthCredential credential = GoogleAuthProvider.credential(
+      accessToken: googleSignInAuthentication.accessToken,
+      idToken: googleSignInAuthentication.idToken,
+    );
+
+    var res = await _auth.signInWithCredential(credential);
+    if (res.additionalUserInfo!.isNewUser) {
+      UserService().createUser(
+        res.user!.uid,
+        res.user!.displayName,
+        res.user!.email,
+      );
+    }
+  }
+
+  void loginWithFacebookAndFirebase() async {
+    final LoginResult result = await FacebookAuth.instance.login();
+    if (result.status == LoginStatus.success) {
+      final AccessToken? accessToken = result.accessToken;
+
+      AuthCredential credential =
+          FacebookAuthProvider.credential(accessToken!.token);
+
+      var res = await _auth.signInWithCredential(credential);
+      print(res);
+      if (res.additionalUserInfo!.isNewUser) {
+        UserService().createUser(
+          res.user!.uid,
+          res.user!.displayName,
+          res.user!.email,
+        );
+      }
+    }
+  }
+
   void resetPassword(email) async {
     try {
       await _auth.sendPasswordResetEmail(email: email);
@@ -66,6 +108,8 @@ class AuthService {
 
   void logout(context) async {
     await _auth.signOut();
+    await _googleSignIn.signOut();
+    await FacebookAuth.instance.logOut();
     Navigator.pushReplacementNamed(context, '/login');
   }
 }

@@ -50,15 +50,21 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         TextButton(
           onPressed: () {
-            AuthService().loginWithGoogle();
+            AuthService().loginWithGoogleAndFirebase();
           },
           child: Text("Login with Google"),
         ),
         TextButton(
           onPressed: () {
-            AuthService().loginWithFacebook();
+            AuthService().loginWithFacebookAndFirebase();
           },
           child: Text("Login with Facebook"),
+        ),
+        TextButton(
+          onPressed: () {
+            AuthService().logout(context);
+          },
+          child: Text("Logout"),
         )
       ]),
     );

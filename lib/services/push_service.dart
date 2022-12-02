@@ -9,7 +9,7 @@ class PushNotificationService {
     var token = await _firebaseMessaging.getToken();
     print(token);
 
-    UserService().updateCurrentUser({"pushToken": token});
+    //UserService().updateCurrentUser({"pushToken": token});
   }
 
   handleNotification() {

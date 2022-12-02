@@ -5,6 +5,7 @@ import 'package:firebaselearning/screens/manage-task.dart';
 import 'package:firebaselearning/screens/profile.dart';
 import 'package:firebaselearning/screens/register.dart';
 import 'package:firebaselearning/screens/reset_password.dart';
+import 'package:firebaselearning/screens/validate.dart';
 import 'package:firebaselearning/services/push_service.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
         '/manage-task': (context) => ManageTask(),
         '/manage-profile': (context) => ProfileScreen()
       },
-      home: GeoExampleScreen(),
+      home: ValidateScreen(),
     );
   }
 }
